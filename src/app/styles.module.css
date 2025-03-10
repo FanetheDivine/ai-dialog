@@ -1,0 +1,29 @@
+.result {
+  /* Chrome、Safari（含iOS）、Edge */
+  &::-webkit-scrollbar {
+    width: 6px;
+    /* 竖向滚动条宽度 */
+    height: 8px;
+    /* 横向滚动条高度 */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    /* 轨道背景透明 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d9d9d9;
+    /* 滚动条颜色 */
+    border-radius: 5px;
+    /* 圆角 */
+  }
+
+  /* Firefox */
+  & {
+    scrollbar-width: thin;
+    /* 滚动条变细 */
+    scrollbar-color: #d9d9d9 transparent;
+    /* 滑块颜色 + 轨道颜色 */
+  }
+}
