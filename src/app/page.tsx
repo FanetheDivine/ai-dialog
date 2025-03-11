@@ -1,8 +1,8 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { FC, Suspense, useState } from 'react'
 import { PlusCircleOutlined } from '@ant-design/icons'
-import { Button, InputNumber, Radio, Slider, Typography } from 'antd'
+import { Button, InputNumber, Radio, Skeleton, Slider, Typography } from 'antd'
 import classNames from 'classnames'
 import { fullContainer } from '@/styles'
 import { AINames, AIComp } from './components'
@@ -53,9 +53,13 @@ const App: FC = () => {
             'overflow-x-auto w-2/3 min-h-[150px]',
           )}
         >
-          <div className={classNames('mx-auto')} style={{ width }}>
-            <AIComp index={value} watermark></AIComp>
-          </div>
+          <Suspense
+            fallback={<Skeleton className='w-full h-full' active></Skeleton>}
+          >
+            <div className={classNames('mx-auto')} style={{ width }}>
+              <AIComp index={value} watermark></AIComp>
+            </div>
+          </Suspense>
         </div>
         <Button type='primary' icon={<PlusCircleOutlined />}>
           加一段对话！
