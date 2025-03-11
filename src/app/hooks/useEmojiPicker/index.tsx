@@ -7,15 +7,18 @@ const emojiList = emojiData.map((item) => item.char)
 const EmojiPicker: FC = () => {
   return (
     <div className='flex flex-wrap gap-2'>
-      {emojiList.slice(0, 10).map((emoji) => (
-        <span key={emoji} className='flex'>
-          <span className='text-2xl'>{emoji}</span>
+      {emojiList.slice(0, 10).map((emoji) => {
+        const emojiIcon = <span className='text-2xl'>{emoji}</span>
+        return (
           <Typography.Paragraph
-            className=''
-            copyable={{ text: emoji }}
+            key={emoji}
+            copyable={{
+              text: emoji,
+              icon: [emojiIcon, emojiIcon],
+            }}
           ></Typography.Paragraph>
-        </span>
-      ))}
+        )
+      })}
     </div>
   )
 }
@@ -28,7 +31,7 @@ export const useEmojiPicker = () => {
       closable: true,
       footer: null,
       icon: null,
-      title: '挑一个吧！',
+      title: '挑一个，点一下！',
       content: <EmojiPicker></EmojiPicker>,
     })
   }, [modal])
