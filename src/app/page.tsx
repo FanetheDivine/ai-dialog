@@ -3,7 +3,6 @@
 import {
   FC,
   PropsWithChildren,
-  ReactNode,
   Suspense,
   useCallback,
   useMemo,
@@ -19,16 +18,17 @@ import {
   Typography,
 } from 'antd'
 import classNames from 'classnames'
-import EmojiPicker from 'emoji-picker-react'
 import { useImmer } from 'use-immer'
 import { fullContainer } from '@/styles'
-import { AINames, AIComp } from './components'
+import { AINames, AIView } from './AIViews'
+import { useEmojiPicker } from './hooks/useEmojiPicker'
 import styles from './styles.module.css'
 
 const App: FC = () => {
   const [aiName, setAIName] = useAIName()
   const [width, compWidthProps] = useAIDialogWidth()
   const [dialog, dispatch] = useAIDialog()
+  const [openEmojiPicker] = useEmojiPicker()
   return (
     <div className={classNames(fullContainer, 'bg-[#fff7e6] !overflow-auto')}>
       <div
@@ -70,17 +70,15 @@ const App: FC = () => {
             fallback={<Skeleton className='w-full h-full' active></Skeleton>}
           >
             <div className={classNames('mx-auto')} style={{ width }}>
-              <AIComp
+              <AIView
                 dialog={dialog}
                 dispatch={dispatch}
                 name={aiName}
-              ></AIComp>
+              ></AIView>
             </div>
           </Suspense>
         </div>
-        <EmojiPickerPopover>
-          <Button>☝️🤓诶！弄点emoji给你</Button>
-        </EmojiPickerPopover>
+        <Button onClick={openEmojiPicker}>☝️🤓诶！弄点emoji给你</Button>
       </div>
     </div>
   )
@@ -140,9 +138,3 @@ const useAIDialog = () => {
 
 export type AIDialog = ReturnType<typeof useAIDialog>[0]
 export type AIDialogDispatch = ReturnType<typeof useAIDialog>[1]
-
-export const EmojiPickerPopover: FC<PropsWithChildren> = (props) => {
-  return (
-    <Popover content={<EmojiPicker></EmojiPicker>}>{props.children}</Popover>
-  )
-}

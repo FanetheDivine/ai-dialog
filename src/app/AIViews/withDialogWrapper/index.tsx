@@ -6,8 +6,8 @@ import {
 } from '@ant-design/icons'
 import { Popover } from 'antd'
 import classNames from 'classnames'
-import { EmojiPickerPopover } from '@/app/page'
-import { AIDialogComp } from '..'
+import { useEmojiPicker } from '@/app/hooks/useEmojiPicker'
+import { AIComponent } from '..'
 import styles from './styles.module.css'
 
 type DialogProps = {
@@ -21,9 +21,10 @@ export type AIDialog = FC<DialogProps>
 export function withDialogWrapper(
   UserDialog: UserDialog,
   AIDialog: AIDialog,
-): AIDialogComp {
+): AIComponent {
   return function Comp(props) {
     const { dialog, dispatch } = props
+    const [openEmojiPicker] = useEmojiPicker()
     return (
       <div className='bg-white text-[14px]'>
         {dialog.map((item, index) => (
@@ -65,9 +66,14 @@ export function withDialogWrapper(
                   onClick={() => dispatch.insert(index + 1)}
                 ></PlusCircleOutlined>
               </Popover>
-              <EmojiPickerPopover>
-                <span className={classNames(styles.icon)}>😋</span>
-              </EmojiPickerPopover>
+              <Popover content='来点emoji！'>
+                <span
+                  className={classNames(styles.icon, 'cursor-pointer')}
+                  onClick={openEmojiPicker}
+                >
+                  😋
+                </span>
+              </Popover>
             </span>
           </div>
         ))}
