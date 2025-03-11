@@ -18,12 +18,7 @@
     border-radius: 5px;
     /* 圆角 */
   }
-
-  /* Firefox */
-  & {
-    scrollbar-width: thin;
-    /* 滚动条变细 */
-    scrollbar-color: #d9d9d9 transparent;
-    /* 滑块颜色 + 轨道颜色 */
+  &::-webkit-scrollbar-button {
+    display: none;
   }
 }

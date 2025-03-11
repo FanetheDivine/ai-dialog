@@ -22,7 +22,8 @@ const App: FC = () => {
     <div className={classNames(fullContainer, 'bg-[#fff7e6] !overflow-auto')}>
       <div
         className={classNames(
-          'min-h-full max-w-[800px] mx-auto flex flex-col gap-4 bg-[#e6f4ff] px-4 pb-4 items-center',
+          'min-h-full max-w-[800px] px-4 pb-4 box-border',
+          'mx-auto flex flex-col gap-4 bg-[#e6f4ff] items-center',
         )}
       >
         <Typography.Title level={2}>AI对话框截图生成器</Typography.Title>
