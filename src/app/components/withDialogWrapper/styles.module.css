@@ -1,0 +1,17 @@
+.dialog {
+  border: 1px transparent dashed;
+  transition-delay: 200ms;
+
+  .icon {
+    visibility: hidden;
+  }
+
+  &:hover {
+    border-color: #f5222d;
+    transition-delay: 0ms;
+
+    .icon {
+      visibility: visible;
+    }
+  }
+}
