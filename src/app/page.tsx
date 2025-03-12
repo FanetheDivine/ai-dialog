@@ -64,7 +64,7 @@ const App: FC = () => {
             ></InputNumber>
             <Slider
               {...compWidthProps}
-              className='flex-auto max-w-2/3'
+              className='flex-auto max-w-[60%]'
             ></Slider>
           </span>
         </div>
