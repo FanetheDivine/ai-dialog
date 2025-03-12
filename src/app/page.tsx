@@ -62,10 +62,7 @@ const App: FC = () => {
               suffix='px'
               controls={false}
             ></InputNumber>
-            <Slider
-              {...compWidthProps}
-              className='flex-auto max-w-[60%]'
-            ></Slider>
+            <Slider {...compWidthProps} className='flex-auto max-w-sm'></Slider>
           </span>
         </div>
         <div
