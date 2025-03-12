@@ -21,7 +21,7 @@ const UserDialog: UserDialog = (props) => {
 const AIDialog: AIDialog = (props) => {
   return (
     <div className='flex gap-2'>
-      <Image className='w-6 h-6 -translate-y-1' src={Gpt} alt='gpt'></Image>
+      <Image className='w-6 h-6' src={Gpt} alt='gpt'></Image>
       <Typography.Paragraph
         editable={{
           onChange: props.onChange,

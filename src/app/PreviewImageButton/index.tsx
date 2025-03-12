@@ -1,6 +1,11 @@
 'use client'
 
 import { FC, ReactNode, useEffect, useId, useState } from 'react'
+import {
+  CheckCircleFilled,
+  CopyOutlined,
+  DownloadOutlined,
+} from '@ant-design/icons'
 import { App, Button } from 'antd'
 import save from 'file-saver'
 import html2canvas from 'html2canvas'
@@ -37,20 +42,23 @@ export const PreviewImageButton: FC<PreviewImageButtonProps> = (props) => {
     )
     getImage(containerRoot, view, id)
       .then((data) => {
-        modal.success({
-          title: '做好了！',
+        modal.info({
+          icon: null,
+          title: <CheckCircleFilled className='text-2xl text-[#52c41a]' />,
           closable: true,
           content: (
             /* eslint-disable */
-            <img
-              className='border border-dashed border-[#f5222d]'
-              src={data}
-              style={{ width }}
-            ></img>
+            <div
+              style={{ boxShadow: '0 0 2px 1px #d9d9d9' }}
+              className='w-full max-h-[50vh] overflow-y-auto rounded-lg'
+            >
+              <img className='box-border w-full' src={data}></img>
+            </div>
             /* eslint-disable */
           ),
           okText: '下载',
           onOk: () => save(data, 'ai-dialog.png'),
+          okButtonProps: { type: 'primary', icon: <DownloadOutlined /> },
         })
       })
       .finally(() => {

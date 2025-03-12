@@ -20,7 +20,7 @@ import {
 import classNames from 'classnames'
 import { useImmer } from 'use-immer'
 import { fullContainer } from '@/styles'
-import { PreviewImageButton } from '@/app/AIViews/components/PreviewImageButton'
+import { PreviewImageButton } from '@/app/PreviewImageButton'
 import { AINames, AIView } from './AIViews'
 import styles from './styles.module.css'
 import { useEmojiPicker } from './utils/useEmojiPicker'
@@ -39,32 +39,39 @@ const App: FC = () => {
         )}
       >
         <Typography.Title level={2}>AI对话框截图生成器</Typography.Title>
-        <div className='self-start flex items-center gap-2'>
+        <div className='self-start flex flex-col'>
           AI种类:
-          <Radio.Group
-            value={aiName}
-            onChange={(e) => setAIName(e.target.value)}
-          >
-            {AINames.map((name) => (
-              <Radio key={name} value={name}>
-                {name}
-              </Radio>
-            ))}
-          </Radio.Group>
+          <span className='flex gap-2 items-center'>
+            <Radio.Group
+              value={aiName}
+              onChange={(e) => setAIName(e.target.value)}
+            >
+              {AINames.map((name) => (
+                <Radio key={name} value={name}>
+                  {name}
+                </Radio>
+              ))}
+            </Radio.Group>
+          </span>
         </div>
-        <div className='self-start w-full flex items-center gap-2'>
+        <div className='self-start w-full flex flex-col'>
           图片宽度:
-          <InputNumber
-            {...compWidthProps}
-            suffix='px'
-            controls={false}
-          ></InputNumber>
-          <Slider {...compWidthProps} className=' w-2/3'></Slider>
+          <span className='flex gap-2 items-center'>
+            <InputNumber
+              {...compWidthProps}
+              suffix='px'
+              controls={false}
+            ></InputNumber>
+            <Slider
+              {...compWidthProps}
+              className='flex-auto max-w-2/3'
+            ></Slider>
+          </span>
         </div>
         <div
           className={classNames(
             styles.result,
-            'overflow-x-auto w-5/6 min-h-[150px]',
+            'overflow-x-auto w-5/6 min-w-[320px] min-h-[150px]',
           )}
         >
           <Suspense
@@ -106,7 +113,7 @@ const useAIName = () => {
 }
 
 const useAIDialogWidth = () => {
-  const [width, setWidth] = useState(320)
+  const [width, setWidth] = useState(300)
   const compWidthProps = {
     min: 160,
     max: 640,
