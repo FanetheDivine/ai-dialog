@@ -20,7 +20,7 @@ import {
 import classNames from 'classnames'
 import { useImmer } from 'use-immer'
 import { fullContainer } from '@/styles'
-import { PreviewImageButton } from '@/app/PreviewImageButton'
+import { PreviewImageButton } from '@/app/components/PreviewImageButton'
 import { AINames, AIView } from './AIViews'
 import styles from './styles.module.css'
 import { useEmojiPicker } from './utils/useEmojiPicker'
