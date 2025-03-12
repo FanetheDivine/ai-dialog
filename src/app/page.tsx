@@ -20,9 +20,10 @@ import {
 import classNames from 'classnames'
 import { useImmer } from 'use-immer'
 import { fullContainer } from '@/styles'
+import { PreviewImageButton } from '@/app/AIViews/components/PreviewImageButton'
 import { AINames, AIView } from './AIViews'
-import { useEmojiPicker } from './hooks/useEmojiPicker'
 import styles from './styles.module.css'
+import { useEmojiPicker } from './utils/useEmojiPicker'
 
 const App: FC = () => {
   const [aiName, setAIName] = useAIName()
@@ -78,7 +79,15 @@ const App: FC = () => {
             </div>
           </Suspense>
         </div>
-        <Button onClick={openEmojiPicker}>☝️🤓诶！弄点emoji给你</Button>
+        <span className='flex gap-4'>
+          <PreviewImageButton
+            dialog={dialog}
+            dispatch={dispatch}
+            name={aiName}
+            width={width}
+          />
+          <Button onClick={openEmojiPicker}>☝️🤓诶！弄点emoji给你</Button>
+        </span>
       </div>
     </div>
   )

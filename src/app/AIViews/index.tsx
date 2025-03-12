@@ -13,10 +13,10 @@ const AICompMap = new Map(
   AINames.map((name) => [name, lazy<AIComponent>(() => import(`./${name}`))]),
 )
 
-type Props = AIComponentProps & {
+export type AIViewProps = AIComponentProps & {
   name: string
 }
-export const AIView: FC<Props> = (props) => {
+export const AIView: FC<AIViewProps> = (props) => {
   const { name, dialog, dispatch, hiddenEditIcon } = props
   const Comp = AICompMap.get(name)!
   return (

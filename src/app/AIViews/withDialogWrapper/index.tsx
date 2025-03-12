@@ -7,7 +7,7 @@ import {
 import { useLocalStorageState } from 'ahooks'
 import { Popover, Tour } from 'antd'
 import classNames from 'classnames'
-import { useEmojiPicker } from '@/app/hooks/useEmojiPicker'
+import { useEmojiPicker } from '@/app/utils/useEmojiPicker'
 import { AIComponent } from '..'
 import styles from './styles.module.css'
 
