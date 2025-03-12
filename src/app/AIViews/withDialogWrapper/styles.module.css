@@ -6,6 +6,7 @@
     visibility: hidden;
   }
 
+  &.tour,
   &:hover {
     border-color: #f5222d;
     transition-delay: 0ms;
@@ -13,5 +14,10 @@
     .icon {
       visibility: visible;
     }
+  }
+
+  &.tour {
+    pointer-events: none;
+    user-select: none;
   }
 }
