@@ -58,15 +58,22 @@ export function withDialogWrapper(
               <span className=' absolute top-1 left-1 flex gap-1'>
                 <Popover content='在上面添加一段对话！'>
                   <PlusCircleOutlined
-                    className={classNames(styles.icon, 'text-[#1677ff]')}
+                    className={classNames(
+                      styles.icon,
+                      'text-[#1677ff] text-lg',
+                    )}
                     onClick={() => dispatch.insert(index)}
                   ></PlusCircleOutlined>
                 </Popover>
                 <Popover content='删除本段对话'>
                   <DeleteOutlined
-                    className={classNames(styles.icon, 'text-[#f5222d]', {
-                      hidden: dialog.length === 1,
-                    })}
+                    className={classNames(
+                      styles.icon,
+                      'text-[#f5222d] text-lg',
+                      {
+                        hidden: dialog.length === 1,
+                      },
+                    )}
                     onClick={() => dispatch.delete(index)}
                   ></DeleteOutlined>
                 </Popover>
@@ -74,13 +81,19 @@ export function withDialogWrapper(
               <span className='absolute bottom-1 left-1 flex gap-1'>
                 <Popover content='在下面添加一段对话！'>
                   <PlusCircleOutlined
-                    className={classNames(styles.icon, 'text-[#1677ff]')}
+                    className={classNames(
+                      styles.icon,
+                      'text-[#1677ff] text-lg',
+                    )}
                     onClick={() => dispatch.insert(index + 1)}
                   ></PlusCircleOutlined>
                 </Popover>
                 <Popover content='来点emoji！'>
                   <span
-                    className={classNames(styles.icon, 'cursor-pointer')}
+                    className={classNames(
+                      styles.icon,
+                      'cursor-pointer text-lg',
+                    )}
                     onClick={openEmojiPicker}
                   >
                     😋
