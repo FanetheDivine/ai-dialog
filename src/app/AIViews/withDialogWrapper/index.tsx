@@ -12,6 +12,7 @@ import { AIComponent } from '..'
 import styles from './styles.module.css'
 
 type DialogProps = {
+  hiddenEditIcon?: Boolean
   text: string
   onChange: (newVal: string) => void
 }
@@ -24,7 +25,7 @@ export function withDialogWrapper(
   AIDialog: AIDialog,
 ): AIComponent {
   return function Comp(props) {
-    const { dialog, dispatch } = props
+    const { dialog, dispatch, hiddenEditIcon } = props
     const [openEmojiPicker] = useEmojiPicker()
     const [tourOpen, startTour, closeTour, tourDOMRef] = useTour()
     return (
@@ -45,10 +46,12 @@ export function withDialogWrapper(
               )}
             >
               <UserDialog
+                hiddenEditIcon={hiddenEditIcon}
                 text={item.user}
                 onChange={(val) => dispatch.change(index, 'user', val)}
               ></UserDialog>
               <AIDialog
+                hiddenEditIcon={hiddenEditIcon}
                 text={item.ai}
                 onChange={(val) => dispatch.change(index, 'ai', val)}
               ></AIDialog>
