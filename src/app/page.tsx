@@ -20,7 +20,7 @@ import {
 import classNames from 'classnames'
 import { useImmer } from 'use-immer'
 import { fullContainer } from '@/styles'
-import { PreviewImageButton } from '@/app/PreviewImageButton'
+import { PreviewImageButton } from '@/app/components/PreviewImageButton'
 import { AINames, AIView } from './AIViews'
 import styles from './styles.module.css'
 import { useEmojiPicker } from './utils/useEmojiPicker'
@@ -62,10 +62,7 @@ const App: FC = () => {
               suffix='px'
               controls={false}
             ></InputNumber>
-            <Slider
-              {...compWidthProps}
-              className='flex-auto max-w-2/3'
-            ></Slider>
+            <Slider {...compWidthProps} className='flex-auto max-w-sm'></Slider>
           </span>
         </div>
         <div
