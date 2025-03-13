@@ -21,7 +21,11 @@ const UserDialog: UserDialog = (props) => {
   )
 }
 
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad|iPod|Phone/i.test(navigator.userAgent)
+}
 const AIDialog: AIDialog = (props) => {
+  const needTranslate = !isMobile && props.hiddenEditIcon
   return (
     <div className='flex flex-col gap-2'>
       <div className='flex gap-2 items-center'>
@@ -38,7 +42,7 @@ const AIDialog: AIDialog = (props) => {
 
           <span
             className={classNames('text-xs', {
-              '-translate-y-0.5': props.hiddenEditIcon,
+              '-translate-y-0.5': needTranslate,
             })}
           >
             已深度思考（用时{' '}
