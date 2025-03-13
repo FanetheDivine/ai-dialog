@@ -15,6 +15,8 @@ type DialogProps = {
   hiddenEditIcon?: Boolean
   text: string
   onChange: (newVal: string) => void
+  extra?: string
+  onChangeExtra: (newVal: string) => void
 }
 
 export type UserDialog = FC<DialogProps>
@@ -49,11 +51,15 @@ export function withDialogWrapper(
                 hiddenEditIcon={hiddenEditIcon}
                 text={item.user}
                 onChange={(val) => dispatch.change(index, 'user', val)}
+                extra={item.extra}
+                onChangeExtra={(val) => dispatch.change(index, 'extra', val)}
               ></UserDialog>
               <AIDialog
                 hiddenEditIcon={hiddenEditIcon}
                 text={item.ai}
                 onChange={(val) => dispatch.change(index, 'ai', val)}
+                extra={item.extra}
+                onChangeExtra={(val) => dispatch.change(index, 'extra', val)}
               ></AIDialog>
               <span className=' absolute top-1 left-1 flex gap-1'>
                 <Popover content='在上面添加一段对话！'>

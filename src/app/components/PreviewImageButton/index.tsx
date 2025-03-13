@@ -41,23 +41,24 @@ export const PreviewImageButton: FC<PreviewImageButtonProps> = (props) => {
       </AntdProvider>
     )
     getImage(containerRoot, view, id)
-      .then((data) => {
+      .then((url) => {
         modal.info({
           icon: null,
           title: <CheckCircleFilled className='text-2xl text-[#52c41a]' />,
           closable: true,
+          width: 700,
           content: (
             /* eslint-disable */
             <div
               style={{ boxShadow: '0 0 2px 1px #d9d9d9' }}
               className='w-full max-h-[50vh] overflow-y-auto rounded-lg'
             >
-              <img className='box-border w-full' src={data}></img>
+              <img className='box-border w-full' src={url}></img>
             </div>
             /* eslint-disable */
           ),
           okText: '下载',
-          onOk: () => save(data, 'ai-dialog.png'),
+          onOk: () => save(url, `ai-dialog-${props.name}-${Date.now()}.png`),
           okButtonProps: { type: 'primary', icon: <DownloadOutlined /> },
         })
       })
@@ -76,7 +77,9 @@ const useContainerRoot = () => {
   const [containerRoot, setContainerRoot] = useState<Root>()
   useEffect(() => {
     const divDom = document.createElement('div')
-    divDom.style.position = ''
+    divDom.style.position = 'absolute'
+    divDom.style.top = '0'
+    divDom.style.left = '0'
     divDom.style.width = '0'
     divDom.style.height = '0'
     divDom.style.overflow = 'hidden'
@@ -104,7 +107,15 @@ const getImage = async (root: Root, node: ReactNode, id: string) => {
       }
     }, 100)
   })
-  return html2canvas(imageDom).then((canvas) => {
-    return canvas.toDataURL()
+  return html2canvas(imageDom, { scale: 10 }).then((canvas) => {
+    return new Promise<string>((resolve, reject) => {
+      canvas.toBlob((blob) => {
+        if (blob) {
+          resolve(URL.createObjectURL(blob))
+        } else {
+          reject(new Error('canvas.toBlob失败'))
+        }
+      })
+    })
   })
 }

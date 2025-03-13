@@ -1,27 +1,6 @@
-import { FC, useCallback } from 'react'
-import emojiData from '@angelofana/emoji-json'
-import { App, Typography } from 'antd'
-
-const emojiList = emojiData.map((item) => item.char)
-
-const EmojiPicker: FC = () => {
-  return (
-    <div className='flex flex-wrap gap-2'>
-      {emojiList.slice(0, 10).map((emoji) => {
-        const emojiIcon = <span className='text-2xl'>{emoji}</span>
-        return (
-          <Typography.Paragraph
-            key={emoji}
-            copyable={{
-              text: emoji,
-              icon: [emojiIcon, emojiIcon],
-            }}
-          ></Typography.Paragraph>
-        )
-      })}
-    </div>
-  )
-}
+import { useCallback } from 'react'
+import { App } from 'antd'
+import { EmojiPicker } from './EmojiPicker'
 
 export const useEmojiPicker = () => {
   const { modal } = App.useApp()

@@ -120,9 +120,10 @@ const useAIDialogWidth = () => {
   return [width, compWidthProps] as const
 }
 
-const getDialog = (user?: string, ai?: string) => ({
+const getDialog = (user?: string, ai?: string, extra?: string) => ({
   user: user || '你好',
   ai: ai || '你好！😊',
+  extra,
   key: Date.now(),
 })
 const useAIDialog = () => {
@@ -139,7 +140,7 @@ const useAIDialog = () => {
           draft.splice(index, 1)
         })
       },
-      change(index: number, type: 'user' | 'ai', newVal: string) {
+      change(index: number, type: 'user' | 'ai' | 'extra', newVal: string) {
         setDialog((draft) => {
           draft[index][type] = newVal
         })
